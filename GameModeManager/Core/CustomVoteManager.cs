@@ -72,8 +72,7 @@ namespace GameModeManager.Core
                 {
                     // Add mode to all modes vote
                     string _modeCommand = PluginExtensions.RemoveCfgExtension(_mode.Config);
-                    _modeOptions.Add(_mode.Name, new CS2_CustomVotes.Shared.Models.VoteOption(_mode.Name, new List<string> { $"css_mode {_mode.Name}"}));
-
+                    _modeOptions.Add(_mode.Name, new CS2_CustomVotes.Shared.Models.VoteOption(_mode.Name, new List<string> { $"css_mode \"{_mode.Name}\""}));
                     // Create per mode vote
                     CustomVotesApi.Get()?.AddCustomVote(
                         _modeCommand,
@@ -83,7 +82,7 @@ namespace GameModeManager.Core
                         30f, // timeToVote as float
                         new Dictionary<string, CS2_CustomVotes.Shared.Models.VoteOption>(StringComparer.OrdinalIgnoreCase)
                         {
-                            { "Yes", new CS2_CustomVotes.Shared.Models.VoteOption(_localizer.Localize("menu.yes"), new List<string> { $"css_mode {_mode.Name}" })},
+                            { "Yes", new CS2_CustomVotes.Shared.Models.VoteOption(_localizer.Localize("menu.yes"), new List<string> { $"css_mode \"{_mode.Name}\"" })},
                             { "No", new CS2_CustomVotes.Shared.Models.VoteOption(_localizer.Localize("menu.no"), new List<string>())},
                         },
                         "center",
